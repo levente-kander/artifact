@@ -1,6 +1,5 @@
 import datetime
 
-
 class Artifact:
     def __init__(self, name, date):
         self.name = name
@@ -11,7 +10,6 @@ class Artifact:
 
     def calculate_age(self):
         return datetime.datetime.now().year - self.date
-
 
 class Painting(Artifact):
     def __init__(self, name, date, artist, medium):
@@ -25,7 +23,6 @@ class Painting(Artifact):
     def is_oil(self):
         return self.medium.lower() == "oil"
 
-
 class Sculpture(Artifact):
     def __init__(self, name, date, material, size):
         super().__init__(name, date)
@@ -35,10 +32,18 @@ class Sculpture(Artifact):
     def is_old(self, limit=100):
         return self.calculate_age() > limit
 
+# Building
+class Building(Artifact):
+    def __init__(self, name, date, architect, location):
+        super().__init__(name, date)
+        self.architect = architect
+        self.location = location
+
+    def __str__(self):
+        return f"{self.name} is a ({self.date}) old building in {self.location} by {self.architect}"
 
 def give_name_artifact():
     return f"artifact name: {__name__}"
-
 
 if __name__ == "__main__":
     obj1 = Artifact("abc", 1321)
